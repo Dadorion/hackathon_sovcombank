@@ -15,7 +15,7 @@ class AuthController {
          const { login, password } = req.body;
          const candidate = await AuthService.getUser(login)
 
-         if (candidate[0]) {
+         if (candidate) {
             return res.status(400).json({ message: "Пользователь с таким именем уже существует" })
          }
          const salt = 7
@@ -42,13 +42,6 @@ class AuthController {
 
          const token = generateAccessToken(user.id, user.password)
          return res.json({ token })
-      } catch (e) {
-         console.log(e)
-      }
-   }
-   async getUsers(req, res) {
-      try {
-         res.json('Everything fine')
       } catch (e) {
          console.log(e)
       }
