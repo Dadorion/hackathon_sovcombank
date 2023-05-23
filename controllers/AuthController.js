@@ -1,7 +1,7 @@
 import AuthService from '../serviceses/AuthService.js'
 import bcrypt from 'bcryptjs'
 import { validationResult } from 'express-validator'
-import generateAccessToken from '../generateToken.js'
+import generateAccessToken from '../config/generateToken.js'
 
 
 class AuthController {
@@ -39,8 +39,7 @@ class AuthController {
          if (!validPassword) {
             return res.status(400).json({ message: `Введен неверный пароль` })
          }
-
-         const token = generateAccessToken(user.id, user.password)
+         const token = generateAccessToken(user.id, user.auth_role_id)
          return res.json({ token })
       } catch (e) {
          console.log(e)
