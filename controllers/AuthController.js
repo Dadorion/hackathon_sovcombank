@@ -1,6 +1,8 @@
 import AuthService from '../serviceses/AuthService.js'
 import bcrypt from 'bcryptjs'
 import { validationResult } from 'express-validator'
+import generateAccessToken from '../generateToken.js'
+
 
 class AuthController {
    async reg(req, res) {
@@ -29,7 +31,6 @@ class AuthController {
          const { login, password } = req.body;
 
          const user = await AuthService.getUser(login)
-         console.log(user)
          if (!user) {
             return res.status(400).json({ message: `Пользователь ${login} не найден` })
          }
@@ -39,6 +40,8 @@ class AuthController {
             return res.status(400).json({ message: `Введен неверный пароль` })
          }
 
+         const token = generateAccessToken(user.id, user.password)
+         return res.json({ token })
       } catch (e) {
          console.log(e)
       }
