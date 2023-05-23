@@ -2,10 +2,9 @@ import pool from '../database.js'
 
 class AuthService {
    async getUser(login) {
-      const q = `SELECT * FROM users WHERE login = $1 ORDER BY id DESC`
+      const q = `SELECT * FROM users WHERE login = $1`
       const answer = await pool.query(q, [login])
-      console.log(answer.rows)
-      return answer.rows
+      return answer.rows[0]
    }
    async addUser(login, password) {
       const q = `INSERT INTO users (login, password) VALUES ($1, $2) RETURNING *`
