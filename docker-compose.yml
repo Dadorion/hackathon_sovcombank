@@ -20,6 +20,6 @@ services:
       POSTGRES_DB: ${DB_NAME}
     volumes:
       - ./pgdata:/var/lib/postgresql/data
-      - ./main.sql:/docker-entrypoint-initdb.d/data.sql
+      - ./recruitment_reserv.sql:/docker-entrypoint-initdb.d/data.sql
     ports:
       - 5432:5432
