@@ -1,0 +1,38 @@
+version: "3.3"
+services:
+  app:
+    image: node:14
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+    networks:
+      - backend
+    depends_on:
+      - db
+    links:
+      - db:db
+    command: bash -c "npm ci --only=production  && npm start"
+
+
+  db:
+    restart: always
+    image: postgres:15.2
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+      - ./database.sql:/docker-entrypoint-initdb.d/database.sql
+      # - ./recruitment_reserv.sql:/docker-entrypoint-initdb.d/recruitment_reserv.sql
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    networks:
+      - backend
+
+
+networks:
+  backend:
+    driver: 'bridge'

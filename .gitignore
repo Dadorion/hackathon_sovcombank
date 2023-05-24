@@ -1,2 +1,8 @@
 # dependencies
 /node_modules
+
+# docker postgres tmp
+/pg_data
+
+# env
+.env
