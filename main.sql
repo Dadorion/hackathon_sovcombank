@@ -17,7 +17,7 @@ ALTER TABLE users
 ADD COLUMN personal_data_id integer;
 
 ALTER TABLE users
-ADD COLUMN registration_date timestamp DEFAULT now ();
+ADD COLUMN registration_date пше;
 
 SELECT
    *
