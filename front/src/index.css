@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+}
+
+#root {
+  height: 100%;
+  min-height: 100vh;
+}
+
+.bebas {
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.narrow {
+  font-family: 'PT Sans Narrow', sans-serif;
+}

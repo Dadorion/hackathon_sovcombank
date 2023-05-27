@@ -1,5 +1,6 @@
 # dependencies
 /node_modules
+./front/node_modules
 
 # docker postgres tmp
 /pg_data
