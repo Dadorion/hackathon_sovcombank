@@ -10,7 +10,7 @@ const NotFound = () => {
   return (
     <div className="flex h-full items-center justify-center bg-[#1B378C] ">
       <div className="flex w-[500px] flex-col items-center justify-center gap-4 rounded-xl bg-white px-12 py-9">
-        <h1 className="text-2xl font-bold uppercase">404 such page does not exist</h1>
+        <h1 className="text-xl font-bold uppercase">404 Такая страница не существует</h1>
       </div>
     </div>
   );
