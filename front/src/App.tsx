@@ -7,7 +7,13 @@ import "./index.css";
 import Recruiter from "./features/recruiter/Recruiter";
 
 const NotFound = () => {
-  return <h1>empty</h1>;
+  return (
+    <div className="flex h-full items-center justify-center bg-[#1B378C] ">
+      <div className="flex w-[500px] flex-col items-center justify-center gap-4 rounded-xl bg-white px-12 py-9">
+        <h1 className="text-2xl font-bold uppercase">404 such page does not exist</h1>
+      </div>
+    </div>
+  );
 };
 
 function App() {

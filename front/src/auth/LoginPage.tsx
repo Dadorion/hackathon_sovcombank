@@ -1,9 +1,8 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthProvider";
 
 export function LoginPage() {
   let navigate = useNavigate();
-  let location = useLocation();
   let auth = useAuth();
 
   // let from = location.state?.from?.pathname || "/recruiter";
