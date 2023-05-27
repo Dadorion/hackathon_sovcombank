@@ -57,11 +57,17 @@ function Funnel() {
     "Закрытие",
   ];
 
-  return <div className="flex gap-3 pl-8 pt-11">
-    {data.map(d => {
-      return <a href="#" className="text-xs text-gray-400">{d}</a>
-    })}
-  </div>
+  return (
+    <div className="flex gap-3 pl-8 pt-11">
+      {data.map((d, idx) => {
+        return (
+          <a key={idx} href="#" className="text-xs text-gray-400">
+            {d}
+          </a>
+        );
+      })}
+    </div>
+  );
 }
 
 function CardsForJobs() {

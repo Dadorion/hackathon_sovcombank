@@ -14,19 +14,18 @@ function App() {
   return (
     <div className="h-screen">
       <Routes>
-        <Route path="login" element={<LoginPage />} />
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/recruiter" element={<Layout />}>
           <Route
-            path="about"
+            index
             element={
               <RequireAuth>
-                <NotFound />
+                <Recruiter />
               </RequireAuth>
             }
           />
-          <Route path="test" element={<Recruiter />} />
-          <Route path="*" element={<NotFound />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
