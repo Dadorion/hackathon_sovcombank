@@ -2,8 +2,8 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 import cors from 'cors'
 import express from 'express'
-import routerAPI from './routers/mainRouter.js'
-import routerAuth from './routers/authRouter.js'
+import mainRouterAPI from './routers/mainRouter.js'
+import authRouter from './routers/authRouter.js'
 
 const PORT = process.env.PORT || 5000
 
@@ -14,8 +14,8 @@ app.use(cors({
 }))
 
 app.get('/', cors(), (req, res) => { res.json('Welcome to Server') })
-app.use('/auth', routerAuth)
-app.use('/api', routerAPI)
+app.use('/auth', authRouter)
+app.use('/api', mainRouterAPI)
 
 async function startApp() {
    try {
