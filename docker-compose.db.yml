@@ -10,6 +10,7 @@ services:
       POSTGRES_DB: ${DB_DB}
     volumes:
       - ./pgdata:/var/lib/postgresql/data
-      - ./recruitment_reserv.sql:/docker-entrypoint-initdb.d/recruitment_reserv.sql
+      - ./recruitment_reserv.sql:/docker-entrypoint-initdb.d/001.sql
+      - ./fake_users.sql:/docker-entrypoint-initdb.d/002.sql
     ports:
       - ${DB_PORT}:5432
