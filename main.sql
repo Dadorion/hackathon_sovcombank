@@ -17,7 +17,7 @@ ALTER TABLE users
 ADD COLUMN personal_data_id integer;
 
 ALTER TABLE users
-ADD COLUMN registration_date timestamp DEFAULT now ();
+ADD COLUMN registration_date пше;
 
 SELECT
    *
@@ -41,3 +41,26 @@ INSERT INTO
    users (login, password, registration_date)
 VALUES
    ('Sasha', '12345', default);
+
+INSERT INTO
+   groups (name)
+VALUES
+   ('admins'),
+   ('users');
+
+SELECT
+   requests.name as request,
+   positions.name as position,
+   description,
+   count,
+   cities.name as city,
+   skills.name as skills
+FROM
+   requests
+   JOIN requests_positions ON requests.id = request_id
+   JOIN positions ON positions.id = position_id
+   JOIN cities ON cities.id = city_id
+   JOIN positions_skills ON positions_skills.position_id = positions.id
+   JOIN skills ON skills.id = skill_id
+ORDER BY
+   requests.id DESC;
