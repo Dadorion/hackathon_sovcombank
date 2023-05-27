@@ -6,10 +6,10 @@ services:
     image: postgres:15.2
     environment:
       POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASS}
-      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DB}
     volumes:
       - ./pgdata:/var/lib/postgresql/data
-      - ./database.sql:/docker-entrypoint-initdb.d/database.sql
+      - ./recruitment_reserv.sql:/docker-entrypoint-initdb.d/recruitment_reserv.sql
     ports:
-      - ${DB_PORT}:${DB_PORT}
+      - ${DB_PORT}:5432
