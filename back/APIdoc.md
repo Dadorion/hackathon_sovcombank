@@ -53,3 +53,68 @@ GET
    "auth_role_id": 2
 }
 ```
+
+### Страница HR
+http://localhost:5000/api/hr
+
+GET
+В headers передать Key: Authorization, Value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInJvbGVzIjoyLCJpYXQiOjE2ODQ4NTU0MzcsImV4cCI6MTY4NDk0MTgzN30.fNhBuIDTtbd6uz6vpUJuWFRWtjyJjplxPusk5n0fyeY
+Возвращает массив объектов
+```
+{
+        "requestNum": 342,
+        "jobs": [
+            {
+                "position": "UX дизайнер",
+                "city": "Удаленная работа",
+                "description": "Должен владеть Фигмой",
+                "count": 1,
+                "keySkills": "Документооборот",
+                "responsibilities": [],
+                "requirements": []
+            },
+            {
+                "position": "Бэкенд специалист",
+                "city": "Москва",
+                "description": "Достаточно джуна",
+                "count": 1,
+                "keySkills": "Стрессоустойчивость",
+                "responsibilities": [],
+                "requirements": []
+            }
+        ]
+    }
+```
+
+### Получение кандидатов
+http://localhost:5000/api/hr/candidates
+
+POST
+
+POST
+Принимает JSON 
+```
+{
+    "dbSearch": "local",
+    "conditions": "asRequest",
+    "keySkills": "asRequest",
+    "stages": "office",
+    "refLink": "false",
+    "addToRecently": "false"
+}
+```
+
+В headers передать Key: Authorization, Value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInJvbGVzIjoyLCJpYXQiOjE2ODQ4NTU0MzcsImV4cCI6MTY4NDk0MTgzN30.fNhBuIDTtbd6uz6vpUJuWFRWtjyJjplxPusk5n0fyeY
+Возвращает массив объектов
+```
+ {
+        "role": "user",
+        "first_name": "Мария",
+        "mid_name": "Ивановна",
+        "last_name": "Иванова",
+        "birstday": "1999-12-31T21:00:00.000Z",
+        "city": "Питер",
+        "phone": "79998887766",
+        "email": "masha@gmail.com"
+    }
+```
