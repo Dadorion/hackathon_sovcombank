@@ -1,5 +1,6 @@
 import pool from '../database.js'
 import requestsBuilder from '../dataBuilders/requestsBuilder.js'
+import usersBuilder from '../dataBuilders/usersBuilder.js'
 
 class HRService {
    async getRequestes() {
@@ -30,7 +31,7 @@ class HRService {
    async getCandidates(payload) {
       const candidates = await pool.query(
          `
-         SELECT value as role, first_name, mid_name, last_name, birstday, cities.name as city, phone, email
+         SELECT users.id, value as role, first_name, mid_name, last_name, birstday, cities.name as city, phone, email
          FROM users
          JOIN auth_roles ON auth_role_id = auth_roles.id
          JOIN personal_data ON personal_data.user_id = users.id
@@ -39,7 +40,7 @@ class HRService {
          `, [1])
 
 
-      return candidates.rows
+      return usersBuilder(candidates.rows)
    }
 }
 
