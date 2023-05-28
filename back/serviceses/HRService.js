@@ -9,9 +9,10 @@ function dataBuilder(sourceArray) {
             requestNum: job.requestnum,
             jobs: [{
                position: job.position,
+               city: job.city,
                description: job.description,
                count: job.count,
-               keySkills: [],
+               keySkills: job.keyskills,
                responsibilities: [],
                requirements: []
             }]
@@ -19,9 +20,10 @@ function dataBuilder(sourceArray) {
       } else {
          acc[requestNumIndex].jobs.push({
             position: job.position,
+            city: job.city,
             description: job.description,
             count: job.count,
-            keySkills: [],
+            keySkills: job.keyskills,
             responsibilities: [],
             requirements: []
          });
@@ -35,12 +37,23 @@ function dataBuilder(sourceArray) {
 class HRService {
    async getAll() {
       const requests = await pool.query(
-         `SELECT positions.id as positionID, requests.number as requestNum, positions.name as position, description, count, cities.name as city
+         `
+         SELECT 
+            positions.id as positionID, 
+            requests.number as requestNum, 
+            positions.name as position, 
+            description, 
+            count, 
+            cities.name as city,
+            skills.name as keySkills
          FROM requests
-         JOIN requests_positions ON requests.id = request_id
-         JOIN positions ON positions.id = position_id
-         JOIN cities ON cities.id = city_id      
-         ORDER BY positionID DESC`)
+            JOIN requests_positions ON requests.id = request_id
+            JOIN positions ON positions.id = position_id
+            JOIN cities ON cities.id = city_id      
+            JOIN positions_skills ON positions.id = positions_skills.position_id
+            JOIN skills ON skills.id = positions_skills.skill_id
+         ORDER BY positionID DESC
+         `)
 
       const stages = await pool.query(`SELECT * FROM stages ORDER BY id ASC`)
 
