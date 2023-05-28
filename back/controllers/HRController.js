@@ -15,7 +15,9 @@ class HRController {
 
    async getCandidates(req, res) {
       try {
-         const allInfo = await HRService.getCandidates()
+         const { dbSearch, conditions, keySkills, stages, refLink, addToRecently } = req.body
+         const payload = [dbSearch, conditions, keySkills, stages, refLink, addToRecently]
+         const allInfo = await HRService.getCandidates(payload)
 
          allInfo
             ? res.status(200).json(allInfo)

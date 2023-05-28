@@ -27,8 +27,19 @@ class HRService {
       return requestsBuilder(requests.rows)
    }
 
-   async getCandidates() {
+   async getCandidates(payload) {
+      const candidates = await pool.query(
+         `
+         SELECT value as role, first_name, mid_name, last_name, birstday, cities.name as city, phone, email
+         FROM users
+         JOIN auth_roles ON auth_role_id = auth_roles.id
+         JOIN personal_data ON personal_data.user_id = users.id
+         LEFT JOIN cities ON personal_data.city_id = cities.id
+         WHERE auth_role_id = $1
+         `, [1])
 
+
+      return candidates.rows
    }
 }
 
