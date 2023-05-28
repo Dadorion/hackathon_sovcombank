@@ -1,41 +1,8 @@
 import pool from '../database.js'
-
-function dataBuilder(sourceArray) {
-   const resultArray = sourceArray.reduce((acc, job) => {
-      const requestNumIndex = acc.findIndex((item) => item.requestNum === job.requestnum);
-
-      if (requestNumIndex === -1) {
-         acc.push({
-            requestNum: job.requestnum,
-            jobs: [{
-               position: job.position,
-               city: job.city,
-               description: job.description,
-               count: job.count,
-               keySkills: job.keyskills,
-               responsibilities: [],
-               requirements: []
-            }]
-         });
-      } else {
-         acc[requestNumIndex].jobs.push({
-            position: job.position,
-            city: job.city,
-            description: job.description,
-            count: job.count,
-            keySkills: job.keyskills,
-            responsibilities: [],
-            requirements: []
-         });
-      }
-
-      return acc;
-   }, []);
-   return resultArray
-}
+import requestsBuilder from '../dataBuilders/requestsBuilder.js'
 
 class HRService {
-   async getAll() {
+   async getRequestes() {
       const requests = await pool.query(
          `
          SELECT 
@@ -57,7 +24,11 @@ class HRService {
 
       const stages = await pool.query(`SELECT * FROM stages ORDER BY id ASC`)
 
-      return dataBuilder(requests.rows)
+      return requestsBuilder(requests.rows)
+   }
+
+   async getCandidates() {
+
    }
 }
 

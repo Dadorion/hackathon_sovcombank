@@ -9,7 +9,7 @@ const router = new Router()
 
 router.use('/users', authMiddleware, userRouter)
 router.use('/persons', authMiddleware, personalDataRouter)
-router.use('/hr', hrRouter)
-router.use('/statistics', statisticsRouter)
+router.use('/hr', authMiddleware, hrRouter)
+router.use('/statistics', authMiddleware, statisticsRouter)
 
 export default router
